@@ -20,17 +20,12 @@ int isValid(long long int numbers[], int start, int end)
 	return 0;	
 }
 
-int findWeakness(long long int numbers[], int start, int end, long long int sum)
+int findWeakness(long long int numbers[], int start, int end)
 {
 	int n_numbers = end-start+1;
 	long long int numbers_copy [n_numbers];
 	memcpy(numbers_copy, numbers+start, sizeof(long long int) * (n_numbers));
 	qsort(numbers_copy, n_numbers, sizeof(long long int), cmpfunc);
-	long long int x = sum;
-	for(int i = 0; i < n_numbers; i++)
-	{
-		x -= numbers_copy[i];
-	}
    	return numbers_copy[0] + numbers_copy[n_numbers-1];	
 }
 
@@ -52,7 +47,7 @@ long long int part2(long long int numbers[], int start, long long int sum)
 		if(acc == 0)
 		{
 			// find the smallest and largest number
-			return findWeakness(numbers, j+1, i, sum); 
+			return findWeakness(numbers, j+1, i); 
 		}
 		
 	}	
